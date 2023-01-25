@@ -6,8 +6,8 @@ import SingleBook from "./Books";
 
 
 const HandleSearch = () => {
-    
-    
+
+  
     const [result, setResult] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
   
@@ -28,8 +28,8 @@ const HandleSearch = () => {
     setSearchQuery(newSearchQuery);
     
     if (newSearchQuery) {
-      BooksAPI.search(newSearchQuery, 1000).then((books) => {
-        
+      BooksAPI.search(newSearchQuery, 350).then((books) => {
+        books.map((book)=> book.shelf="none");
         books.length > 0 ? setResult(books) : setResult([]);
       });
     } else setResult([]);

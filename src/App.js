@@ -10,7 +10,10 @@ import HandleSearch from "./components/search"
 function App() {
   
   const[books ,setBooks]= useState([]);
+
   
+  const [forceRender, setForceRender] = useState(true);
+
   useEffect(()=>{
     const getSourceData= async()=>{
       await BooksAPI.getAll()
@@ -19,15 +22,14 @@ function App() {
       })
     }
     getSourceData();
-  },[]);
+  },[books]);
 
-  const sortBooks = (book, bookShelf)=>{
+  const sortBooks =  (book, bookShelf)=>{
     BooksAPI.update(book, bookShelf)
     .then(()=>{
-      book.shelf = bookShelf;
-      setBooks(books.filter((item)=>
-      item.id !== book.id).concat(book)
-      );
+      books.map((i)=> i.id === book.id && (i.shelf = bookShelf));
+      setBooks(books);
+      setForceRender(!forceRender);
     })
   }
   return (

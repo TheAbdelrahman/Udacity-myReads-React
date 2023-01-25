@@ -16,8 +16,8 @@ const SingleBook = ({book , onChangeShelf})=>{
                         }}
                     ></div>
                     <div className="book-shelf-changer" >
-                        <select value={book.shelf} onChange={(e)=> onChangeShelf( book ,e.target.value)}>
-                            <option value="none" disabled>
+                        <select defaultValue={book.shelf} onChange={(e)=> onChangeShelf(book ,e.target.value)}>
+                            <option disabled>
                                 Move to...
                             </option>
                             <option value="currentlyReading">
@@ -25,6 +25,7 @@ const SingleBook = ({book , onChangeShelf})=>{
                             </option>
                             <option value="wantToRead">Want to Read</option>
                             <option value="read">Read</option>
+                            <option value="none">None</option>
                         </select>
                     </div>
                 </div>
